@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; media-src 'self'; connect-src 'none'; img-src 'none'; font-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'none'; manifest-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="./preview.css">
+  <title>Ресурс — тест аудиоплеера PR №39</title>
+  <script src="./mock-api.js" defer></script>
+  <script src="./bundle.js" defer></script>
+  <script src="./controls.js" defer></script>
+</head>
+<body>
+  <header class="page-heading">
+    <p class="eyebrow">Отдельная тестовая страница · PR №39</p>
+    <h1>«Ресурс» — проверка аудиоплеера</h1>
+    <p>Настоящий React-компонент. Без входа, подписок и рабочих сервисов. Прогресс хранится только в памяти этой вкладки.</p>
+    <p class="notice">Кнопка ошибки имитирует сбой на стороне браузера. Это не настоящий обрыв потока GitHub Pages. Страница не проверяет серверную защиту аудио.</p>
+  </header>
+  <section class="test-panel" aria-labelledby="tools-title">
+    <h2 id="tools-title">Панель проверки</h2>
+    <p>1. Начните практику и подождите 5 секунд. 2. Послушайте запись. 3. Вызовите искусственную ошибку и нажмите «Продолжить с этого места» в самом плеере.</p>
+    <div class="button-row">
+      <button type="button" data-action="begin">Начать практику (панель)</button>
+      <button type="button" data-action="toggle">Пауза / воспроизведение (панель)</button>
+      <button type="button" data-action="seek">Перемотать на +15 секунд</button>
+      <button type="button" data-action="near-end">Перемотать почти до конца</button>
+    </div>
+    <div class="button-row">
+      <button type="button" data-action="break">Сымитировать ошибку аудио</button>
+      <button type="button" data-action="recover">Продолжить с этого места (панель)</button>
+      <button type="button" data-action="waiting">Сымитировать waiting · 8 секунд</button>
+      <button type="button" data-action="stalled">Сымитировать stalled · 8 секунд</button>
+    </div>
+    <label for="scenario">Ответ на следующую попытку восстановления:</label>
+    <select id="scenario">
+      <option value="success">Успех — новая тестовая ссылка</option>
+      <option value="failure">Ошибка API — затем можно повторить</option>
+      <option value="timeout">Нет ответа — тайм-аут плеера через 15 секунд</option>
+      <option value="late">Запоздавший ответ через 18 секунд, игнорирующий отмену</option>
+    </select>
+    <p class="hint">Режим применяется один раз и возвращается к «Успех». Для запоздавшего ответа: дождитесь тайм-аута и сразу повторите восстановление. Старый ответ не должен заменить новую ссылку.</p>
+    <p id="panel-status" role="status" aria-live="polite">Подготовка панели…</p>
+    <div class="readouts">
+      <span id="media-status">MP3 ещё не загружен</span>
+      <span id="security-status">Проверки безопасности страницы ожидаются</span>
+    </div>
+    <div class="button-row">
+      <button type="button" data-action="download">Скачать локальный отчёт JSON</button>
+      <button type="button" data-action="reset">Начать заново (перезагрузить)</button>
+    </div>
+    <details><summary>Журнал проверки в этой вкладке</summary><pre id="test-log" aria-label="Журнал тестовой панели"></pre></details>
+  </section>
+  <main id="root" aria-label="Исходный React-аудиоплеер"></main>
+  <footer>Звук: локальный файл «Ресурс». Исходник: коммит <code>11f37597650384b4ee06b6d59b1dfb1e2b10fb00</code>. Имя практики внутри компонента сохранено из готовой сборки. Внешний вид упрощён; логика плеера не переписана.</footer>
+  <noscript>Для проверки нужен JavaScript. Рабочие сервисы и авторизация не используются.</noscript>
+</body>
+</html>
