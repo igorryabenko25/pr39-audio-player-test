@@ -1,0 +1,16 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'none'; media-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'">
+<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<link rel="stylesheet" href="./style.css"><title>PR39 · два исправленных плеера</title>
+<script defer src="./lab.js"></script><script defer src="./bundle.js"></script></head><body>
+<header><p>Локальная исправленная версия · не опубликована</p><h1>Два плеера · «Ресурс»</h1>
+<p>API, пользователь и прогресс искусственные. Метаданные и ошибки нового MP3-источника управляются тестовым Service Worker. Его ответы формируются из одного локального MP3.</p>
+<nav><a href="?player=ordinary">Обычный плеер</a><a href="?player=protected">Защищённый плеер</a></nav></header>
+<section id="panel"><h2 id="kind">Подготовка</h2>
+<div class="row"><button data-action="begin">Начать (панель)</button><button data-action="toggle">Пауза / звук (панель)</button><button data-action="seek">Позиция 35 секунд</button><button data-action="end">Почти конец</button></div>
+<label>Следующая загрузка MP3: <select id="fault"><option value="normal">Обычный поток</option><option value="hold">Зависшие метаданные</option><option value="late">Метаданные через 18 секунд</option><option value="broken">Ошибка нового источника</option><option value="late-api">Ответ API через 18 секунд (защищённый)</option></select></label>
+<div class="row"><button data-action="fault">Применить режим</button><button data-action="error">Искусственная исходная ошибка</button><button data-action="recover">Продолжить с этого места (панель)</button><button data-action="download">Скачать наблюдения JSON</button></div>
+<p id="status" role="status">Подготовка Service Worker…</p><p id="media">MP3 ещё не загружен</p>
+<details><summary>Журнал</summary><pre id="log"></pre></details></section>
+<main id="root"></main><footer>Проверяются исходные локально исправленные TSX, а не копия их логики. Кнопка исходной ошибки синтетическая; последующие загрузки/ошибки метаданных обрабатывает настоящий браузер. Это не проверка Supabase Storage или потока рабочего сайта.</footer>
+</body></html>
